@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Home</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="Home.css" media="screen">
+    <script src="https://aloycwl.github.io/js/cdn/jquery.min.js"></script>
+    <script src="https://aloycwl.github.io/js/cdn/web3.min.js"></script>
+    <script src="https://aloycwl.github.io/js/cdn/web3ac.js"></script>
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.11.3, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode">
+    <section class="u-clearfix u-custom-color-1 u-section-1" id="sec-f74b">
+      <img class="u-image u-image-default u-preserve-proportions u-image-1" src="images/LSGGetHelp1.png" alt="" data-image-width="1185" data-image-height="288" data-href="LSG-Help.html" data-page-id="875020369">
+      <div class="u-video u-video-contain u-video-1">
+        <div class="embed-responsive embed-responsive-1">
+          <video style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" class="embed-responsive-item"frameborder="0" allowfullscreen=""><source src="images/lsgvid.mov" type="video/mov">Your browser does not support the video tag.</video>
+        </div>
+      </div>
+      <img class="u-image u-image-2" src="images/LSGHomepage1.png" data-image-width="1206" data-image-height="1195">
+      <img class="u-image u-image-default u-preserve-proportions u-image-3" src="images/LSGWallet1.png" alt="" data-image-width="790" data-image-height="918">
+      <img class="u-image u-image-default u-preserve-proportions u-image-4" src="images/LSGMintNow1.png" alt="" data-image-width="1362" data-image-height="361">
+      <img class="u-image u-image-default u-preserve-proportions u-image-5" src="images/LSGSubtraction1.png" alt="" data-image-width="904" data-image-height="842">
+      <img class="u-image u-image-default u-preserve-proportions u-image-6" src="images/LSGAddition1.png" alt="" data-image-width="904" data-image-height="843">
+      <img class="u-image u-image-default u-preserve-proportions u-image-7" src="images/LSGTwitter1.png" alt="" data-image-width="994" data-image-height="926">
+      <img class="u-image u-image-default u-preserve-proportions u-image-8" src="images/LSGOpenSea1.png" alt="" data-image-width="909" data-image-height="880">
+      <img class="u-image u-image-default u-preserve-proportions u-image-9" src="images/LSGLogo.png" alt="" data-image-width="1459" data-image-height="1459" data-href="Home.html" data-page-id="402814816">
+    </section>
+    <script>
+      $.getScript('js/generative.js', function () {});
+      $.getScript(
+        'https://aloycwl.github.io/js/cdn/ipfs-api.min.js',
+        function () {}
+      );
+      num = 1;
+      CHAIN = 4;
+      CS = 'https://aloycwl.github.io/lsg_frontend/css/lsg.css';
+      function changeNum(n) {
+        num += n;
+        num = num < 1 ? 5 : num > 5 ? 1 : num;
+        $('#mintBtn').html('Mint ' + num);
+      }
+      async function mint() {
+        $('#nfts').html('');
+        $('#loading').html('Fetching number...');
+        count = await contract.count().call();
+        ipfs = IpfsApi(IA);
+        cidImg = new Array();
+        $('#loading').html('Generating art...');
+        for (i = count; i < count + num; i++) {
+          await drawLCA();
+          count++;
+          cidImg.push(
+            await uploadJson(
+              `{"name":"LCA #${count}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
+                i
+              )}",${txt}}`
+            )
+          );
+        }
+        $('#loading').html('Minting...');
+        await contract.MINT(cidImg).send(FA);
+        $('#loading').html('Congratulation!');
+        $('#nfts').show();
+      }
+      (async () => {
+        await load(
+          [
+            {
+              inputs: [u6],
+              name: 'MINT',
+              outputs: [],
+              stateMutability: 'nonpayable',
+              type: 'function',
+            },
+            {
+              inputs: [],
+              name: 'count',
+              outputs: [u1],
+              stateMutability: 'view',
+              type: 'function',
+            },
+          ],
+          '0xF965957d44431CcDd9afFD0F5d6e9aE524FECb9b'
+        );
+      })();
+    </script>
+    
+    
+
+  </body>
+</html>
