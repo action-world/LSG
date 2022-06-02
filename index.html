@@ -75,7 +75,7 @@
       async function mint() {
         if (typeof count == 'undefined') await start();
         balance = count = await contract.balanceOf(acct).call();
-      if (Number(balance) + Number(num)) {
+      if (Number(balance) + Number(num) > 5) {
         $('#count3333').html('5 MAX!');
         return;
       }
