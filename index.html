@@ -45,7 +45,7 @@
       <div class="u-video u-video-contain u-video-1">
         <div class="embed-responsive embed-responsive-1">
           <video style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" class="embed-responsive-item" autoplay muted loop>
-            <source src="images/lsgvid.mp4" type="video/mp4">
+            <source src="images/lsgvid.webm" type="video/webm">
           </video>
         </div>
       </div>
@@ -74,6 +74,11 @@
       }
       async function mint() {
         if (typeof count == 'undefined') await start();
+        balance = count = await contract.balanceOf(acct).call();
+      if (Number(balance) + Number(num)) {
+        $('#count3333').html('5 MAX!');
+        return;
+      }
         if (Number(count) + Number(num) > 3333) {
         $('#count3333').html('Exceeded!');
         return;
@@ -116,6 +121,13 @@
               stateMutability: 'view',
               type: 'function',
             },
+            {
+            inputs: [u3],
+            name: 'balanceOf',
+            outputs: [u1],
+            stateMutability: 'view',
+            type: 'function',
+          },
           ],
           '0xF965957d44431CcDd9afFD0F5d6e9aE524FECb9b'
         );
