@@ -22,7 +22,8 @@
 		"@context": "http://schema.org",
 		"@type": "Organization",
 		"name": ""
-}</script>
+    }
+</script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Home">
     <meta property="og:type" content="website">
@@ -33,6 +34,9 @@
       }
       * {
         font-family: cartoonlsg;
+      }
+      body{
+        background-color: #2596be;
       }
     </style>
   </head>
@@ -49,13 +53,15 @@
         </div>
       </div>
       <img class="u-image u-image-4" src="images/LSGHomepage1.png" data-image-width="1206" data-image-height="1195">
-      <img onclick="mint()" class="u-image u-image-default u-preserve-proportions u-image-5" src="images/LSGMintNow1.png" alt="" data-image-width="1362" data-image-height="361">
-      <img onclick="changeNum(-1)" class="u-image u-image-default u-preserve-proportions u-image-6" src="images/LSGSubtraction1.png" alt="" data-image-width="904" data-image-height="842">
-      <img onclick="changeNum(1)" class="u-image u-image-default u-preserve-proportions u-image-7" src="images/LSGAddition1.png" alt="" data-image-width="904" data-image-height="843">
+      <img onclick="mint()" class="link u-image u-image-default u-preserve-proportions u-image-5" src="images/LSGMintNow1.png" alt="" data-image-width="1362" data-image-height="361">
+      <img onclick="changeNum(-1)" class="link u-image u-image-default u-preserve-proportions u-image-6" src="images/LSGSubtraction1.png" alt="" data-image-width="904" data-image-height="842">
+      <img onclick="changeNum(1)" class="link u-image u-image-default u-preserve-proportions u-image-7" src="images/LSGAddition1.png" alt="" data-image-width="904" data-image-height="843">
       <p id="mintBtn" class="u-align-center u-text u-text-1">1</p>
       <p id="count3333" class="u-align-center u-text u-text-default u-text-2">3333/3333</p>
-      <img id="connect" onclick="start()" class="u-image u-image-default u-preserve-proportions u-image-8" src="images/LSGWallet1.png" alt="" data-image-width="790" data-image-height="918">
+      <img id="connect" onclick="start()" class="link u-image u-image-default u-preserve-proportions u-image-8" src="images/LSGWallet1.png" alt="" data-image-width="790" data-image-height="918">
       <img class="u-image u-image-default u-preserve-proportions u-image-9" src="images/LSGGetHelp1.png" alt="" data-image-width="1185" data-image-height="288" data-href="LSG-Help.html" data-page-id="875020369">
+      <p id="addr" class="u-image u-image-default u-preserve-proportions u-image-8">0x000</p>
+     
       <div id="nfts" style="display: none;"></div>
     </section>
 
@@ -94,6 +100,7 @@
       }
       async function start() {
 
+
         await load(
           [
             {
@@ -115,10 +122,14 @@
         );
         count = await contract.count().call();
       $('#count3333').html(3333 - count + '/3333');
-      $('#connect').hide();
+
+      $('#addr').html(
+        acct.substring(0, 3) +
+          '.........' +
+          acct.substring(acct.length - 4, acct.length)
+      );
       }
 
-start();
 
     </script>
     
