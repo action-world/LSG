@@ -12,11 +12,11 @@ Background = [
 ];
 Body = ['Purple'];
 Hat = ['Cowboy Hat', 'Party-hearts', 'Party-luna'];
-Clothes = ['Green-red Sweater','Red-Green Sweater','Yellow-blue Sweater', 'Green Vest', 'Pink Vest', 'Brown Vest',
+Clothing = ['Green-red Sweater','Red-Green Sweater','Yellow-blue Sweater', 'Green Vest', 'Pink Vest', 'Brown Vest',
            'Pink Eskimo', 'Brown Eskimo', 'Green Eskimo', 'Doctor's Coat'];
-Neckwear = ['Feather Boa', 'Loser Chain', 'Sailor Bow', 'Pearly Necklace'];
+Neck = ['Feather Boa', 'Loser Chain', 'Sailor Bow', 'Pearly Necklace'];
 Hand = ['Poker Cards', 'Fist', 'Cigarette', 'Ice Cream'];
-Glasses = ['Shades', 'Star', 'Flower', 'Googles'];
+Eyes = ['Shades', 'Star', 'Flower', 'Googles'];
 Balloon1 = ['|1', '|2', '|3', '|4', '|5', '|6', '|7', '|8', '|9', '|10'];
 Balloon2 = [
   '|11',
@@ -91,25 +91,25 @@ async function drawLCA(i) {
   balRan = ran(5);
   switch (balRan) {
     case 1:
-      await dd('Balloon', 0, Balloon1, 7);
+      await dd('Speech Bubble', 0, Balloon1, 7);
       break;
     case 2:
-      await dd('Balloon', 0, Balloon2, 8);
+      await dd('Speech Bubble', 0, Balloon2, 8);
       break;
     case 3:
-      await dd('Balloon', 0, Balloon3, 9);
+      await dd('Speech Bubble', 0, Balloon3, 9);
       break;
     case 4:
-      await dd('Balloon', 0, Balloon4, 10);
+      await dd('Speech Bubble', 0, Balloon4, 10);
       break;
     default:
-      await dd('Balloon', 0, Balloon5, 11);
+      await dd('Speech Bubble', 0, Balloon5, 11);
   }
   await dd('Body', 0, Body, 0);
-  await dd('Clothes', 0, Clothes, 4);
-  await dd('Glasses', 0, Glasses, 6);
-  await dd('Neckwear', 0, Neckwear, 3);
-  await dd('Hand', 0, Hand, 5);
+  await dd('Clothing', 0, Clothing, 4);
+  await dd('Eyes', 0, Eyes, 6);
+  await dd('Neck', 0, Neck, 3);
+  await dd('Hands', 0, Hands, 5);
   await dd('Hat', 0, Hat, 2);
   txt = txt.substring(0, txt.length - 1).replace('|', 'Type ') + ']';
 }
