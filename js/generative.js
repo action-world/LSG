@@ -1,21 +1,22 @@
 Background = [
-  'Coral',
-  'Beech',
-  'Elm',
-  'Frog',
-  'Pine',
-  'Teal',
-  'Slate',
+  'Pink',
+  'Yellow',
+  'Khaki',
+  'Light Green',
+  'Jungle Green',
+  'Baby Blue',
+  'Lilac',
   'Purple',
-  'Peach',
-  'Brown',
+  'Orange',
+  'Gold',
 ];
-Body = ['Cool'];
-Hat = ['Cowboy', 'Party Hearts', 'Party Crescents', 'Floppy'];
-Clothes = ['Sweater', 'Vest', 'Eskimo', 'Doctor'];
-Neckwear = ['Furrowed', 'Loser Chain', 'Sailor Bow'];
-Hand = ['Poker Cards', 'Blank', 'Lighted Cigarette', 'Ice Cream'];
-Glasses = ['Cool', 'Star', 'Flower', 'Leaf'];
+Body = ['Purple'];
+Hat = ['Cowboy Hat', 'Party-hearts', 'Party-luna'];
+Clothes = ['Green-red Sweater','Red-Green Sweater','Yellow-blue Sweater', 'Green Vest', 'Pink Vest', 'Brown Vest',
+           'Pink Eskimo', 'Brown Eskimo', 'Green Eskimo', 'Doctor's Coat'];
+Neckwear = ['Feather Boa', 'Loser Chain', 'Sailor Bow', 'Pearly Necklace'];
+Hand = ['Poker Cards', 'Fist', 'Cigarette', 'Ice Cream'];
+Glasses = ['Shades', 'Star', 'Flower', 'Googles'];
 Balloon1 = ['|1', '|2', '|3', '|4', '|5', '|6', '|7', '|8', '|9', '|10'];
 Balloon2 = [
   '|11',
@@ -72,7 +73,7 @@ async function dd(s1, s2, s3, s4) {
     return new Promise((resolve) => {
       txt += `{"trait_type":"${s1}","value":"${s3[r]}"},`;
       img = new Image();
-      img.src = `https://aloycwl.github.io/lsg_frontend/img/lsgsprites.png`;
+      img.src = `/images/lsgsprites.png`;
       img.crossOrigin = 'Anonymous';
       img.onload = function () {
         cd.drawImage(img, r * s, s4 * s, s, s, 0, 0, s, s);
