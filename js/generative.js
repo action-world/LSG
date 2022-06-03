@@ -13,7 +13,7 @@ Background = [
 Body = ['Purple'];
 Hat = ['Cowboy Hat', 'Party-hearts', 'Party-luna'];
 Clothing = ['Green-red Sweater','Red-Green Sweater','Yellow-blue Sweater', 'Green Vest', 'Pink Vest', 'Brown Vest',
-           'Pink Eskimo', 'Brown Eskimo', 'Green Eskimo', 'Doctor's Coat'];
+           'Pink Eskimo', 'Brown Eskimo', 'Green Eskimo', 'Doctor\'s Coat'];
 Neck = ['Feather Boa', 'Loser Chain', 'Sailor Bow', 'Pearly Necklace'];
 Hand = ['Poker Cards', 'Fist', 'Cigarette', 'Ice Cream'];
 Eyes = ['Shades', 'Star', 'Flower', 'Googles'];
