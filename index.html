@@ -74,7 +74,8 @@
     <script>
         var num = 1,
         CHAIN = 4,
-        loaded = 1;
+        loaded = 1,
+	speech = ["Stop trying!","Don’t be greedy!","U crazy?"];
       function changeNum(n) {
         num += n;
         num = num < 1 ? 5 : num > 5 ? 1 : num;
@@ -83,12 +84,15 @@
       async function mint() {
         if (typeof count == 'undefined') await start();
         balance = count = await contract.balanceOf(acct).call();
-      if (Number(balance) + Number(num) > 5) 
+      if (Number(balance) + Number(num) > 5) {
+	      
+	$('#count3333').html(speech[ran(3)]);
         return;
-      
+      }
         if (Number(count) + Number(num) > 3332) 
         return;
-      
+        $('#mainBtn').attr('src','/images/LSGMintNowButtonred.png');
+	      $('#mainBtn').attr('disabled','disabled');
         $('#nfts').html('');
         cnt = 0;
         ipfs = IpfsApi(IA);
@@ -107,6 +111,8 @@
         $('#count3333').html('Minting...');
         await contract.MINT(cidImg).send(FA);
         $('#count3333').html('Minted!');
+	              $('#mainBtn').attr('src','/images/LSGMintNowButton.png');
+	      $('#mainBtn').removeAttr('disabled');
       }
       async function start() {
 
@@ -140,7 +146,11 @@
         count = await contract.count().call();
       $('#count3333').html(count + '/3333');
 			if(count>3332){
-				$('#mainBtn').attr('src','/images/LSGMintOut.png')
+				$('#mainBtn').attr('src','/images/LSGMintOut.png');
+				$('#minusBtn').hide();
+				$('#mintBtn').hide();
+				$('#plusBtn').hide();
+
 			}
 
       $('#addr').html(
