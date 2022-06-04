@@ -95,7 +95,7 @@
           await drawLCA(i);
           cidImg.push(
             await uploadJson(
-              `{"name":"LCA #${i}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
+              `{"name":"LCA #${Number(i)+1}","description":"Haha to those who have invested in LUNA","image":"ipfs://${await uploadImg(
                 i
               )}",${txt}}`
             )
