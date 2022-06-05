@@ -176,11 +176,11 @@
           return;
         }
         bal = await web3.getBalance(acct);
-        if (bal < 5000000000000000) {
+        if (bal < 5000000000s00000) {
           $('#count3333').html('No gas');
           return;
         }
-        if (Number(balance) + Number(num) > 3332) return;
+        if (Number(count) + Number(num) > 3332) return;
         $('#mainBtn').attr(
           'src',
           'https://lsg.wtf/images/LSGMintNowButtonred.png'
@@ -191,7 +191,7 @@
         ipfs = IpfsApi(IA);
         cidImg = new Array();
         $('#count3333').html('Drawing...');
-        for (i = balance; i < Number(balance) + Number(num); i++) {
+        for (i = count; i < Number(count) + Number(num); i++) {
           await drawLCA(i);
           cidImg.push(
             await uploadJson(
