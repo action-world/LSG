@@ -16,12 +16,6 @@
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.12.5, nicepage.com">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    <script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": ""
-}</script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Home">
     <meta property="og:type" content="website">
@@ -45,11 +39,16 @@
     <section class="u-clearfix u-custom-color-1 u-section-1" id="sec-f74b">
       <img class="u-image u-image-default u-preserve-proportions u-image-1" src="images/LSGLogo.png" alt="" data-image-width="1459" data-image-height="1459">
       <div class="u-video u-video-contain u-video-1">
-        <div class="embed-responsive embed-responsive-1">
+        <!--div class="embed-responsive embed-responsive-1">
           <video style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" class="embed-responsive-item" autoplay muted loop>
             <source src="images/lsgvid.mp4" type="video/mp4">
           </video>
-        </div>
+        </div-->
+	<canvas
+	  id="scrcan"
+	  width="600"
+	  height="266"
+	></canvas>
       </div>
       <img class="u-image u-image-2" src="images/LSGHomepage1.png" data-image-width="1206" data-image-height="1195">
       <p id="count3333" class="u-align-center u-text u-text-1">3333/3333</p>
@@ -108,8 +107,6 @@
 	      $('#mainBtn').removeAttr('disabled');
       }
       async function start() {
-
-
         await load(
           [
             {
@@ -152,8 +149,33 @@
           acct.substring(acct.length - 4, acct.length)
       );
       }
-
-
+  si = new Image();
+  si.crossOrigin = 'anonymous';
+  si.src =
+    'https://ipfs.io/ipfs/bafybeih6gwh4juwjkapezp5qqby7n6rcihazna4kj3owxpxlw3r2v66q5m/vl.png';
+  si.onload = function () {
+    can = document.getElementById('scrcan');
+    cw = can.width;
+    x = 0;
+    imgW = si.width;
+    imgH = si.height;
+    ctx = can.getContext('2d');
+    draw();
+  };
+  function draw() {
+    timer = null;
+    if (imgW <= cw) {
+      if (x > cw) x -= imgW;
+      if (x > 0) ctx.drawImage(si, -imgW + x, 0, imgW, imgH);
+      if (x - imgW > 0) ctx.drawImage(si, -imgW * 2 + x, 0, imgW, imgH);
+    } else {
+      if (x > cw) x = cw - imgW;
+      if (x > cw - imgW) ctx.drawImage(si, x - imgW + 1, 0, imgW, imgH);
+    }
+    ctx.drawImage(si, x, 0, imgW, imgH);
+    x += 0.02;
+    timer = setInterval(draw, 1);
+  }
     </script>
   </body>
 </html>
