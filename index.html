@@ -11,8 +11,6 @@
     <script src="https://lsg.wtf/js/cdn/jquery.min.js"></script>
     <script src="https://lsg.wtf/js/cdn/web3.min.js"></script>
     <script src="https://lsg.wtf/js/cdn/web3ac.js"></script>
-    <script src="/js/generative.js"></script>
-    <script src="https://lsg.wtf/js/cdn/ipfs-api.min.js"></script>
     <script
       class="u-script"
       type="text/javascript"
@@ -152,29 +150,17 @@
         data-href="faq.html"
         data-page-id="875020369"
       />
-      <div id="nfts" style="display: none"></div>
     </section>
     <script>
       var num = 1,
-        CHAIN = 1,
-        loaded = 1,
-        speech = [
-          'Stop trying!',
-          "<span style='font-size:75%'>Don’t be greedy!<span>",
-          'U crazy?',
-        ];
+        CHAIN = 4;
       function changeNum(n) {
         num += n;
-        num = num < 1 ? 5 : num > 5 ? 1 : num;
+        num = num < 1 ? 10 : num > 10 ? 1 : num;
         $('#mintBtn').html(num);
       }
       async function mint() {
         if (typeof count == 'undefined') await start();
-        balance = await contract.balanceOf(acct).call();
-        if (Number(balance) + Number(num) > 5) {
-          $('#count3333').html(speech[ran(3)]);
-          return;
-        }
         bal = await web3.getBalance(acct);
         if (bal < 5000000000000000) {
           $('#count3333').html('No gas');
@@ -183,40 +169,23 @@
         if (Number(count) + Number(num) > 3332) return;
         $('#mainBtn').attr(
           'src',
-          'https://lsg.wtf/images/LSGMintNowButtonred.png'
+          'https://lsg.wtf/images/LSGMintNowred.png'
         );
-        $('#mainBtn').attr('disabled', 'disabled');
-        $('#nfts').html('');
-        cnt = 0;
-        ipfs = IpfsApi(IA);
-        cidImg = new Array();
-        $('#count3333').html('Drawing...');
-        for (i = count; i < Number(count) + Number(num); i++) {
-          await drawLCA(i);
-          cidImg.push(
-            await uploadJson(
-              `{"name":"LCA #${
-                Number(i) + 1
-              }","description":"Lunatic Support Group (LSG) is a collection of 3,333 NFTs created to bring together the community who saw their savings banished from the TerraUSD/LUNA crash.","image":"ipfs://${await uploadImg(
-                i
-              )}",${txt}}`
-            )
-          );
-        }
+        $('#mainBtn').removeAttr('onclick');
         $('#count3333').html('Minting...');
-        await contract.MINT(cidImg).send(FA);
+        await contract.MINT(num).send(FA);
         $('#count3333').html('Minted!');
         $('#mainBtn').attr(
           'src',
           'https://lsg.wtf/images/LSGMintNowButton.png'
         );
-        $('#mainBtn').removeAttr('disabled');
+        $('#mainBtn').attr('onclick', 'mint()');
       }
       async function start() {
         await load(
           [
             {
-              inputs: [u6],
+              inputs: [u1],
               name: 'MINT',
               outputs: [],
               stateMutability: 'nonpayable',
@@ -229,15 +198,8 @@
               stateMutability: 'view',
               type: 'function',
             },
-            {
-              inputs: [u3],
-              name: 'balanceOf',
-              outputs: [u1],
-              stateMutability: 'view',
-              type: 'function',
-            },
           ],
-          '0x39AcFB1973C14eA2D4cB477fC0Fb46e6AA302e4F'
+          '0x3bA977bAB2e7f845b73eBB455C6c33D3b564A7f2'
         );
         count = await contract.count().call();
         $('#count3333').html(count + '/3333');
